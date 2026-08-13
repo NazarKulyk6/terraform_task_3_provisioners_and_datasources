@@ -1,28 +1,24 @@
-data "azurerm_virtual_network" "main" {
-  name                = azurerm_virtual_network.main.name
-  resource_group_name = var.resource_group_name
+data "azurerm_resource_group" "main" {
+  name = var.resource_group_name
+}
 
-  depends_on = [azurerm_virtual_network.main]
+data "azurerm_virtual_network" "main" {
+  name                = "${var.prefix}-network"
+  resource_group_name = var.resource_group_name
 }
 
 data "azurerm_subnet" "internal" {
-  name                 = azurerm_subnet.internal.name
-  virtual_network_name = azurerm_virtual_network.main.name
+  name                 = "internal"
+  virtual_network_name = "${var.prefix}-network"
   resource_group_name  = var.resource_group_name
-
-  depends_on = [azurerm_subnet.internal]
 }
 
 data "azurerm_network_interface" "main" {
-  name                = azurerm_network_interface.main.name
+  name                = "${var.prefix}-nic"
   resource_group_name = var.resource_group_name
-
-  depends_on = [azurerm_network_interface.main]
 }
 
 data "azurerm_virtual_machine" "main" {
-  name                = azurerm_virtual_machine.main.name
+  name                = "${var.prefix}-vm"
   resource_group_name = var.resource_group_name
-
-  depends_on = [azurerm_virtual_machine.main]
 }
