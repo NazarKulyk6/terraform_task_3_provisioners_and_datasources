@@ -1,25 +1,30 @@
 variable "prefix" {
-  type    = string
-  default = "nazartf3"
+  type        = string
+  description = "Prefix for Azure resource names"
+  default     = "nazartf3"
 }
 
 variable "resource_group_name" {
-  type    = string
-  default = "nazar-tf-task3-rg"
+  type        = string
+  description = "Existing Azure resource group name"
+  default     = "nazar-tf-task3-rg"
 }
 
 variable "location" {
-  type    = string
-  default = "West Europe"
+  type        = string
+  description = "Azure region"
+  default     = "West Europe"
 }
 
 variable "admin_username" {
-  type    = string
-  default = "testadmin"
+  type        = string
+  description = "VM admin username"
+  default     = "testadmin"
 }
 
 variable "admin_password" {
-  type      = string
-  default   = "Password1234!"
-  sensitive = true
+  type        = string
+  description = "VM admin password"
+  default     = "Password1234!"
+  sensitive   = true
 }
